@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MarketBridge — Business & Investment Platform</title>
+
+  <meta
+    name="description"
+    content="MarketBridge connects businesses with customers and provides accessible information about companies, markets and investment opportunities."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f8fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background: #07111f;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: #24c77a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #d9e2ef;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #24c77a;
+    }
+
+    .nav-button {
+      background: #24c77a;
+      color: #06130c !important;
+      padding: 10px 17px;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .menu {
+      display: none;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg, #07111f, #0d2335);
+      color: white;
+      padding: 90px 22px;
+    }
+
+    .hero-container {
+      max-width: 1180px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(36,199,122,0.12);
+      border: 1px solid rgba(36,199,122,0.3);
+      color: #65e6a6;
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 65px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: #24c77a;
+    }
+
+    .hero p {
+      color: #c8d3df;
+      font-size: 18px;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .primary-button,
+    .secondary-button {
+      padding: 14px 21px;
+      border-radius: 9px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .primary-button {
+      background: #24c77a;
+      color: #06130c;
+    }
+
+    .secondary-button {
+      border: 1px solid #506276;
+      color: white;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 28px;
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 18px;
+    }
+
+    .market-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .market-row:last-child {
+      border-bottom: none;
+    }
+
+    .market-name {
+      color: #dce5ee;
+    }
+
+    .market-value {
+      text-align: right;
+    }
+
+    .market-value small {
+      color: #75dfa8;
+      display: block;
+    }
+
+    section {
+      padding: 80px 22px;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 45px;
+    }
+
+    .section-heading h2 {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .section-heading p {
+      color: #657184;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e4e9ef;
+      border-radius: 15px;
+      padding: 28px;
+      box-shadow: 0 8px 25px rgba(20,40,70,0.05);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #e7f9f0;
+      color: #15995b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #687386;
+      font-size: 15px;
+    }
+
+    .business-section {
+      background: white;
+    }
+
+    .business-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .business-content h2 {
+      font-size: 40px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .business-content p {
+      color: #667184;
+      margin-bottom: 20px;
+    }
+
+    .check-list {
+      list-style: none;
+      margin: 25px 0;
+    }
+
+    .check-list li {
+      margin: 13px 0;
+      font-weight: 600;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      color: #15995b;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .business-box {
+      background: #07111f;
+      color: white;
+      border-radius: 20px;
+      padding: 35px;
+    }
+
+    .business-box h3 {
+      font-size: 25px;
+      margin-bottom: 18px;
+    }
+
+    .business-box p {
+      color: #c4cfdb;
+    }
+
+    .business-box .button {
+      display: inline-block;
+      margin-top: 20px;
+      background: #24c77a;
+      color: #06130c;
+      padding: 13px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .investment {
+      background: #f0f5f3;
+    }
+
+    .investment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .investment-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      border: 1px solid #dfe7e3;
+    }
+
+    .investment-card .number {
+      color: #15995b;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .investment-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .investment-card p {
+      color: #687386;
+      font-size: 14px;
+    }
+
+    .cta {
+      background: #07111f;
+      color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      color: #c5d0dc;
+      max-width: 650px;
+      margin: 0 auto 25px;
+    }
+
+    footer {
+      background: #050c15;
+      color: #9aa8b8;
+      padding: 50px 22px 25px;
+    }
+
+    .footer-grid {
+      max-width: 1180px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    footer h3,
+    footer h4 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    footer p,
+    footer a {
+      font-size: 14px;
+      color: #9aa8b8;
+    }
+
+    footer a {
+      display: block;
+      margin: 9px 0;
+    }
+
+    .copyright {
+      max-width: 1180px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #1c2937;
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background: #07111f;
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .hero-container,
+      .business-content {
+        grid-template-columns: 1fr;
+      }
+
+      .cards,
+      .investment-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        padding: 65px 22px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .business-content h2 {
+        font-size: 32px;
+      }
+
+      .cta h2 {
+        font-size: 31px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <nav class="nav">
+
+      <a href="#" class="logo">
+        Market<span>Bridge</span>
+      </a>
+
+      <div class="menu" onclick="toggleMenu()">☰</div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#business">For Businesses</a>
+        <a href="#investing">Investing</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-button">Get Started</a>
+      </div>
+
+    </nav>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-container">
+
+      <div>
+
+        <div class="badge">
+          Business • Markets • Investment Information
+        </div>
+
+        <h1>
+          Grow your business.<br>
+          <span>Explore opportunities.</span>
+        </h1>
+
+        <p>
+          MarketBridge helps businesses build online visibility while
+          providing accessible information about companies, financial
+          markets and investment opportunities.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="#business" class="primary-button">
+            Promote Your Business
+          </a>
+
+          <a href="#investing" class="secondary-button">
+            Explore Investing
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-card">
+
+        <h3>Market Information</h3>
+
+        <div class="market-row">
+          <div class="market-name">Company Markets</div>
+          <div class="market-value">
+            Research
+            <small>View information</small>
+          </div>
+        </div>
+
+        <div class="market-row">
+          <div class="market-name">Business Exposure</div>
+          <div class="market-value">
+            Digital
+            <small>Build visibility</small>
+          </div>
+        </div>
+
+        <div class="market-row">
+          <div class="market-name">Investment Research</div>
+          <div class="market-value">
+            Learn
+            <small>Understand risk</small>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SERVICES -->
+  <section id="services">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h2>What We Do</h2>
+
+        <p>
+          A platform designed around business visibility,
+          market information and responsible financial education.
+        </p>
+
+      </div>
+
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="icon">📈</div>
+
+          <h3>Market Information</h3>
+
+          <p>
+            Access company and market information to help you
+            understand how publicly traded assets work.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">🏢</div>
+
+          <h3>Business Promotion</h3>
+
+          <p>
+            Give your business an online presence where potential
+            customers can discover your company and contact you.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">📊</div>
+
+          <h3>Investment Education</h3>
+
+          <p>
+            Learn about stocks, market movements, diversification,
+            risk and the fundamentals of investing.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BUSINESS -->
+  <section class="business-section" id="business">
+
+    <div class="container">
+
+      <div class="business-content">
+
+        <div>
+
+          <h2>
+            Put your business in front of more people.
+          </h2>
+
+          <p>
+            Create a business profile and give customers another
+            place to discover your products or services.
+          </p>
+
+          <ul class="check-list">
+
+            <li>Business profile</li>
+            <li>Website and social-media links</li>
+            <li>Customer contact information</li>
+            <li>Promotional opportunities</li>
+            <li>Performance and traffic tracking</li>
+
+          </ul>
+
+          <a href="#contact" class="primary-button">
+            List My Business
+          </a>
+
+        </div>
+
+
+        <div class="business-box">
+
+          <h3>Business Advertising</h3>
+
+          <p>
+            Tell us about your company, what you offer and
+            which audience you want to reach.
+          </p>
+
+          <p>
+            Your listing can include your business name,
+            description, website and approved social-media
+            profiles.
+          </p>
+
+          <a href="#contact" class="button">
+            Start Your Listing
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INVESTING -->
+  <section class="investment" id="investing">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h2>Understand Investing</h2>
+
+        <p>
+          Learn the fundamentals before putting your money at risk.
+        </p>
+
+      </div>
+
+
+      <div class="investment-grid">
+
+        <div class="investment-card">
+
+          <div class="number">01 — RESEARCH</div>
+
+          <h3>Understand the Company</h3>
+
+          <p>
+            Review a company's business model, financial information,
+            products, competition and public disclosures.
+          </p>
+
+        </div>
+
+
+        <div class="investment-card">
+
+          <div class="number">02 — RISK</div>
+
+          <h3>Understand Market Risk</h3>
+
+          <p>
+            Stock prices can rise or fall. Past performance does not
+            guarantee future results.
+          </p>
+
+        </div>
+
+
+        <div class="investment-card">
+
+          <div class="number">03 — DECISION</div>
+
+          <h3>Make Informed Decisions</h3>
+
+          <p>
+            Consider your objectives, financial circumstances and
+            risk tolerance before making an investment.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h2>Built Around Transparency</h2>
+
+        <p>
+          Our goal is to make business promotion and financial
+          information easier to understand and access.
+        </p>
+
+      </div>
+
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="icon">🔎</div>
+
+          <h3>Clear Information</h3>
+
+          <p>
+            Information should be presented clearly so users can
+            understand what they are considering.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">🔐</div>
+
+          <h3>Privacy & Security</h3>
+
+          <p>
+            User accounts and personal information should be handled
+            using appropriate security practices.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">🤝</div>
+
+          <h3>Real Businesses</h3>
+
+          <p>
+            Business listings should represent genuine companies,
+            products or services and use accurate information.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+
+    <div class="container">
+
+      <h2>Ready to get started?</h2>
+
+      <p>
+        Whether you're looking to promote a business or learn more
+        about financial markets, create an account and explore the
+        platform.
+      </p>
+
+      <a href="register.html" class="primary-button">
+        Create an Account
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-grid">
+
+      <div>
+
+        <h3>MarketBridge</h3>
+
+        <p>
+          Business visibility and financial market information
+          in one place.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h4>Platform</h4>
+
+        <a href="#services">Services</a>
+        <a href="#business">Business Promotion</a>
+        <a href="#investing">Investing</a>
+
+      </div>
+
+
+      <div>
+
+        <h4>Company</h4>
+
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+
+      </div>
+
+
+      <div>
+
+        <h4>Support</h4>
+
+        <a href="#contact">Help Center</a>
+        <a href="#contact">Contact Support</a>
+
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+      © 2026 MarketBridge. All rights reserved.
+      <br><br>
+
+      Investment involves risk. Market information is provided
+      for informational and educational purposes and should not
+      be interpreted as a guarantee of investment performance.
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    function toggleMenu() {
+      const menu = document.getElementById("navLinks");
+      menu.classList.toggle("active");
+    }
+
+  </script>
+
+</body>
+</html>
